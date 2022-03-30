@@ -16,7 +16,7 @@ function Posts() {
     useEffect(() => {
         fetch("http://localhost:8080/getallposts")
             .then((res) => res.json())
-            .then((json) => setPost(json[0]))
+            .then((json) => setPost(json[json.length - 1]))
             .catch((e) => console.log(e));
     }, []);
 
@@ -28,11 +28,11 @@ function Posts() {
         </div>
         <div>
             {
-                post.prev ? <button onClick={() => getPost(post.prev)}>Previous</button> : <button disabled>Previous</button>
+                post.next ? <button onClick={() => getPost(post.next)}>Previous</button> : <button disabled>Previous</button>
             }
             <button onClick={() => deleteCurrentPost(post.post_id)}>Delete</button>
             {
-                post.next ? <button onClick={() => getPost(post.next)}>Next</button> : <button disabled>Next</button>
+                post.prev ? <button onClick={() => getPost(post.prev)}>Next</button> : <button disabled>Next</button>
             }
         </div>
     </div>
