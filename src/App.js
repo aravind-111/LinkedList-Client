@@ -9,6 +9,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Posts />} />
           <Route exact path="/newpost" element={<NewPost />} />
+          <Route exact path="/newpost/middle" element={<NewPost />} />
         </Routes>
       </BrowserRouter>
     </div>

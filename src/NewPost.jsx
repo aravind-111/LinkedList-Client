@@ -11,9 +11,15 @@ function NewPost() {
         setTitle(value);
     }
 
+    console.log(window.location.pathname);
+
     const handleSubmit = async () => {
-        const a = await axios.post("http://localhost:8080/newpost/", {title: title, date: date})
-        console.log(a);
+        if(window.location.pathname === "/newpost/middle") {
+          await axios.post("http://localhost:8080/newpost/middle", {title: title, date: date})
+        }
+        else {
+          await axios.post("http://localhost:8080/newpost/", {title: title, date: date})
+        }
     }
 
     const setDateee = (e) => {

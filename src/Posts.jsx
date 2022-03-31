@@ -16,7 +16,17 @@ function Posts() {
     useEffect(() => {
         fetch("http://localhost:8080/getallposts")
             .then((res) => res.json())
-            .then((json) => setPost(json[json.length - 1]))
+            .then((json) => {
+                let main;
+                let highest = json[json.length - 1];
+                for(let i=0; i<json.length; i++) {
+                    if(json[i].date > highest.date) {
+                        highest = json[i];
+                        main = i;
+                    }
+                }
+                setPost(json[main])
+            })
             .catch((e) => console.log(e));
     }, []);
 
