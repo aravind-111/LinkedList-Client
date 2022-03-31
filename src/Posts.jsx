@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 function Posts() {
-    const [post, setPost] = useState("");
+    const [post, setPost] = useState([]);
 
     const getPost = async (id) => {
         const postItem = await axios.get("http://localhost:8080/getsinglepost/" + id);
@@ -17,7 +17,7 @@ function Posts() {
         fetch("http://localhost:8080/getallposts")
             .then((res) => res.json())
             .then((json) => {
-                let main;
+                let main = json.length - 1;
                 let highest = json[json.length - 1];
                 for(let i=0; i<json.length; i++) {
                     if(json[i].date > highest.date) {
